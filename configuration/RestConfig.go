@@ -1,17 +1,25 @@
 package configuration
 
 import (
+	"ApiRest/controller"
 	"ApiRest/util"
-	"net/http"
 
 	"github.com/labstack/echo/v4"
 )
 
 func RestConfig() {
 	e := echo.New()
-	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, World!")
-	})
 	port := util.LoadProperty("SERVER_PORT")
+	setControllers(e)
 	e.Logger.Fatal(e.Start((":" + port)))
+}
+
+func setControllers(echo *echo.Echo) {
+	// Add controller motorcycle
+	motorcycleController := controller.NewMotorcycleController(echo)
+	motorcycleController.AddEndpoints()
+
+	// // Add controller car
+	carController := controller.NewCarController(echo)
+	carController.AddEndpoints()
 }

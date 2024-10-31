@@ -6,6 +6,6 @@ import (
 )
 
 func main() {
-	configuration.RestConfig()
 	log.Println("Start App")
+	configuration.RestConfig()
 }
