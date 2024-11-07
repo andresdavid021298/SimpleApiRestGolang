@@ -1,7 +1,11 @@
 package model
 
+import "github.com/google/uuid"
+
 type Vehicle struct {
-	amount       string
-	numberWheels int
-	color        string
+	Id     uuid.UUID
+	Brand  string
+	Model  string
+	Color  string
+	Amount string
 }
